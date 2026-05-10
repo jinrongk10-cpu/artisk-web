@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-09T00:00:00Z",
+  "title": "Design System: Artisk",
+  "extensions": {
+    "colorMeta": {
+      "artisk-green": { "role": "ambient", "displayName": "Artisk Green", "canonical": "#EBFBD1", "tonalRamp": ["#EBFBD1", "#E0F3B8", "#D4EB9F", "#C8E386", "#BCDB6D", "#B0D354", "#A4CB3B", "#98C322"] },
+      "artisk-dark": { "role": "primary", "displayName": "Artisk Dark", "canonical": "#0A0F0C", "tonalRamp": ["#0A0F0C", "#1A1F1C", "#2A2F2C", "#3A3F3C", "#4A4F4C", "#5A5F5C", "#6A6F6C", "#7A7F7C"] },
+      "orb-lime-bright": { "role": "ambient", "displayName": "Orb Lime Bright", "canonical": "#c8f06b", "tonalRamp": ["#c8f06b", "#CCF27A", "#D0F489", "#D4F698", "#D8F8A7", "#DCFAB6", "#E0FCC5", "#E4FED4"] },
+      "orb-lime-muted": { "role": "ambient", "displayName": "Orb Lime Muted", "canonical": "#a5e055", "tonalRamp": ["#a5e055", "#AFE564", "#B9EA73", "#C3EF82", "#CDF491", "#D7F9A0", "#E1FEAF", "#EBFFBE"] },
+      "white-glass": { "role": "surface", "displayName": "Mist Glass", "canonical": "rgba(255, 255, 255, 0.55)", "tonalRamp": ["rgba(255,255,255,0.35)", "rgba(255,255,255,0.40)", "rgba(255,255,255,0.45)", "rgba(255,255,255,0.50)", "rgba(255,255,255,0.55)", "rgba(255,255,255,0.60)", "rgba(255,255,255,0.70)", "rgba(255,255,255,0.80)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only. Single sentence, large weight contrast." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles and major callouts." },
+      "body": { "displayName": "Body", "purpose": "Descriptions, paragraphs, feature text. Max 65ch." },
+      "label": { "displayName": "Label", "purpose": "Section tags, small uppercase structural markers." }
+    },
+    "shadows": [
+      { "name": "ambient-card", "value": "0 1px 2px rgba(0,0,0,0.02), 0 4px 16px rgba(0,0,0,0.04)", "purpose": "Default resting state for glass cards. Barely perceptible." },
+      { "name": "ambient-card-hover", "value": "0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08)", "purpose": "Hover state: shadow deepens and spreads." },
+      { "name": "inset-highlight", "value": "inset 0 1px 0 rgba(255,255,255,0.8)", "purpose": "Top-edge specular on glass cards. Core of the misted-glass illusion." },
+      { "name": "image-card", "value": "0 2px 8px rgba(0,0,0,0.04)", "purpose": "Hero image wall thumbnails." }
+    ],
+    "motion": [
+      { "name": "spring-interact", "value": "{ stiffness: 300, damping: 20, mass: 0.5 }", "purpose": "Button taps and light hover responses." },
+      { "name": "spring-reveal", "value": "{ stiffness: 80, damping: 14, mass: 1.5 }", "purpose": "Section enter/exit on scroll." },
+      { "name": "spring-hero", "value": "{ stiffness: 60, damping: 12, mass: 2 }", "purpose": "Hero image wall scrubbing. Slowest, heaviest." },
+      { "name": "spring-orbs", "value": "{ stiffness: 8, damping: 6, mass: 3 }", "purpose": "Background orb random roaming. Astoundingly slow and heavy." },
+      { "name": "breathe-orbs", "value": "CSS @keyframes, 8-segment irregular, 8-9s", "purpose": "Orb opacity + scale breathing. Shrink = darken, expand = brighten." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Hero CTA. Pill-shaped, dark, with spring hover/tap.",
+      "html": "<button class=\"ds-btn-primary\">Build my brand system</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 9999px; padding: 12px 24px; font-size: 14px; font-weight: 600; background: #0A0F0C; color: #fff; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }"
+    },
+    {
+      "name": "Glass Card",
+      "kind": "card",
+      "refersTo": "glass-card",
+      "description": "Mist-frosted glass container. Semi-transparent with backdrop blur and top-highlight specular.",
+      "html": "<div class=\"ds-glass-card\"><h3 class=\"ds-card-title\">Build your visual identity</h3><p class=\"ds-card-body\">Your logo, color, and type, designed around your brand.</p></div>",
+      "css": ".ds-glass-card { background: rgba(255,255,255,0.55); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.02), 0 4px 16px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8); transition: transform 0.3s, box-shadow 0.3s; } .ds-glass-card:hover { transform: translateY(-6px); box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08); } .ds-card-title { font-family: Roboto, sans-serif; font-size: 18px; font-weight: 600; color: rgba(0,0,0,0.85); margin: 0 0 12px; } .ds-card-body { font-family: Roboto, sans-serif; font-size: 14px; line-height: 1.6; color: rgba(0,0,0,0.55); margin: 0; }"
+    },
+    {
+      "name": "Glass Header",
+      "kind": "nav",
+      "refersTo": "glass-header",
+      "description": "Sticky glass navigation bar. More opaque than cards to establish z-hierarchy.",
+      "html": "<nav class=\"ds-glass-header\"><span class=\"ds-nav-logo\">Artisk</span><a href=\"#\" class=\"ds-nav-link\">Features</a><a href=\"#\" class=\"ds-nav-link\">Pricing</a></nav>",
+      "css": ".ds-glass-header { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: rgba(255,255,255,0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); box-shadow: 0 1px 3px rgba(0,0,0,0.03); } .ds-nav-logo { font-family: Roboto, sans-serif; font-size: 14px; font-weight: 600; color: rgba(0,0,0,0.85); } .ds-nav-link { font-family: Roboto, sans-serif; font-size: 13px; font-weight: 500; color: rgba(0,0,0,0.55); text-decoration: none; transition: color 0.2s; } .ds-nav-link:hover { color: rgba(0,0,0,0.85); }"
+    },
+    {
+      "name": "FAQ Item",
+      "kind": "custom",
+      "refersTo": "faq-item",
+      "description": "Expandable glass accordion using native <details>. Glass with lighter opacity.",
+      "html": "<details class=\"ds-faq-item\"><summary><span>How do design credits work?</span><span class=\"ds-faq-toggle\">+</span></summary><p class=\"ds-faq-answer\">1 credit per design, 2 credits for SVG files.</p></details>",
+      "css": ".ds-faq-item { border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 16px 24px; cursor: pointer; background: rgba(255,255,255,0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: background 0.2s, box-shadow 0.2s; } .ds-faq-item:hover { background: rgba(255,255,255,0.7); box-shadow: 0 2px 12px rgba(0,0,0,0.04); } .ds-faq-item summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 24px; font-size: 14px; font-weight: 600; color: rgba(0,0,0,0.8); outline: none; } .ds-faq-item summary::-webkit-details-marker { display: none; } .ds-faq-toggle { font-size: 18px; color: rgba(0,0,0,0.35); transition: transform 0.2s; flex-shrink: 0; } .ds-faq-item[open] .ds-faq-toggle { transform: rotate(45deg); } .ds-faq-answer { margin-top: 12px; font-size: 14px; line-height: 1.6; font-weight: 400; color: rgba(0,0,0,0.55); }"
+    },
+    {
+      "name": "Step Number Badge",
+      "kind": "custom",
+      "refersTo": "step-number",
+      "description": "Small glass circle enumerating How It Works steps.",
+      "html": "<div class=\"ds-step-number\">01</div>",
+      "css": ".ds-step-number { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.5); display: flex; align-items: center; justify-content: center; font-family: Roboto, sans-serif; font-size: 12px; font-weight: 600; color: #0A0F0C; flex-shrink: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Aurora Greenhouse",
+    "overview": "Artisk 的界面是一间极光温室。纯白为底，如同温室的玻璃穹顶；两颗巨大的叶绿素光斑漂浮在空间中，以生物般的节奏呼吸、游动，永不触碰。半透明的凝雾玻璃层叠其上，backdrop-filter: blur(20px) 捕捉着光斑的余晖，inset 高光在每张卡片顶部凝聚，像玻璃表面凝集的水雾。这是一个精确的有机系统：排版是 Roboto 的冷静网格，间距遵循 8px-12px-16px 的精确步长；而运动和氛围来自 framer-motion 的重阻尼弹簧物理和 CSS 八段不规则呼吸动画。秩序是骨骼，有机是肌肉。",
+    "keyCharacteristics": [
+      "纯白底色，两颗绿色光斑飘浮游动，互不碰撞",
+      "凝雾玻璃卡片：半透 0.55 alpha、20px blur、顶部白色高光",
+      "弹簧阻尼物理驱动所有交互",
+      "滚动 scrubbing 驱动章节进出场",
+      "Roboto 单字族，600-400 字重级差建立层级"
+    ],
+    "rules": [
+      { "name": "The No-Black Rule", "body": "所有黑色文字都是 rgba(0,0,0,0.85)，不是 #000。所有边框都是淡黑透明而非实色灰。", "section": "colors" },
+      { "name": "The Single-Voice Rule", "body": "整个系统只用 Roboto。不用衬线装饰、不用 mono 代码块、不用手写体点缀。", "section": "typography" },
+      { "name": "The Depth-by-Transparency Rule", "body": "如果元素需要比另一个元素高，给它更白的背景和更大的 blur，而不是更深的投影。", "section": "elevation" }
+    ],
+    "dos": [
+      "用透明度层级代替深色投影，深度来自玻璃层叠",
+      "保持排版单调 (Roboto only)，让字体成为安静的结构容器",
+      "动效用弹簧阻尼，不用 ease-in-out 或 linear",
+      "滚动进度绑定 scrubbing，动画是滚动位置的反函数",
+      "rgba(0,0,0,0.85) 作为最深文字，rgba(0,0,0,0.05) 作为最淡边框"
+    ],
+    "donts": [
+      "用蓝色 CTA 或紫色渐变 — AI-category 陈词滥调",
+      "用 border-left / border-right > 1px 做彩色装饰条纹",
+      "给文字上渐变色 (background-clip: text gradient)",
+      "用实色投影 (box-shadow > 0.1 opacity)",
+      "多个相同尺寸的图标+标题+文字卡片网格",
+      "模态弹窗作为第一选择"
+    ]
+  }
+}

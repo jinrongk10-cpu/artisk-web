@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+@theme {
+  --color-artisk-green: #EBFBD1;
+  --color-artisk-dark: #0A0F0C;
+  --color-artisk-card-bg: rgba(255, 255, 255, 0.25);
+  --color-artisk-border: rgba(255, 255, 255, 0.3);
+}
+
+html, body {
+  font-family: Roboto, system-ui, -apple-system, Segoe UI, sans-serif;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+/* ====== 白底 ====== */
+body {
+  background: #fff;
+}
+
+/* ====== 光斑容器（位置由 framer-motion 控制） ====== */
+.orb-container {
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ====== 光斑本体（呼吸动画纯 CSS） ====== */
+.orb-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  filter: blur(60px);
+  mix-blend-mode: screen;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+.orb-inner--1 {
+  width: 900px;
+  height: 900px;
+  background: #c8f06b;
+  animation-name: breathe-1;
+  animation-duration: 9s;
+}
+
+.orb-inner--2 {
+  width: 700px;
+  height: 700px;
+  background: #a5e055;
+  animation-name: breathe-2;
+  animation-duration: 8s;
+}
+
+@keyframes breathe-1 {
+  0%   { opacity: 0.08; transform: scale(0.92); }
+  12%  { opacity: 0.22; transform: scale(0.98); }
+  25%  { opacity: 0.55; transform: scale(1.08); }
+  38%  { opacity: 0.65; transform: scale(1.14); }
+  50%  { opacity: 0.6;  transform: scale(1.1); }
+  62%  { opacity: 0.45; transform: scale(1.0); }
+  75%  { opacity: 0.06; transform: scale(0.9); }
+  88%  { opacity: 0.15; transform: scale(0.95); }
+  100% { opacity: 0.08; transform: scale(0.92); }
+}
+
+@keyframes breathe-2 {
+  0%   { opacity: 0.55; transform: scale(1.05); }
+  15%  { opacity: 0.15; transform: scale(0.95); }
+  30%  { opacity: 0.06; transform: scale(0.88); }
+  45%  { opacity: 0.2;  transform: scale(0.97); }
+  55%  { opacity: 0.58; transform: scale(1.08); }
+  68%  { opacity: 0.65; transform: scale(1.12); }
+  80%  { opacity: 0.5;  transform: scale(1.03); }
+  92%  { opacity: 0.18; transform: scale(0.96); }
+  100% { opacity: 0.55; transform: scale(1.05); }
+}
+
+/* ====== 玻璃卡片 ====== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.02),
+    0 4px 16px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
+}
+
+/* ====== 玻璃导航栏 ====== */
+.glass-header {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* ====== Hero 图片墙 ====== */
+.hero-image-wall {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.hero-image-row {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image {
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.hero-image--vertical {
+  width: 160px;
+  height: 200px;
+}
+
+.hero-image--horizontal {
+  width: 340px;
+  height: 200px;
+}
+
+/* ====== 按钮 ====== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 9999px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #0A0F0C;
+  color: #fff;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+/* ====== FAQ 玻璃展开 ====== */
+.faq-item {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 16px 24px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 200ms ease, box-shadow 200ms ease;
+}
+
+.faq-item:hover {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.faq-item summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+  outline: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-toggle {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.35);
+  transition: transform 200ms ease;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .orb-inner {
+    animation: none;
+  }
+}
+
+details[open] .faq-toggle {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* ====== Why Artisk 列表圆点 ====== */
+.why-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.why-bullet--default {
+  background: transparent;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+}
+
+.why-bullet--active {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+}
+
+/* ====== How It Works 编号圆圈 ====== */
+.step-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0A0F0C;
+  flex-shrink: 0;
+}
