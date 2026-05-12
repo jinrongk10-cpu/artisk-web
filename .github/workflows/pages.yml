@@ -25,7 +25,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npx tsc -b
+      - run: npx vite build
         env:
           BASE_URL: /artisk-web/
       - uses: actions/upload-pages-artifact@v5
