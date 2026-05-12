@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, useCallback, useMemo } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion'
+import { withBase } from '../lib/utils'
 
 const SPRING = { stiffness: 80, damping: 14, mass: 1.5 }
 const SPRING_SLOW = { stiffness: 60, damping: 12, mass: 2 }
@@ -19,10 +20,13 @@ const content = {
     logoSrc: '/logo.png',
   },
   hero: {
+    eyebrow: 'AI Brand Intelligence',
     headline: 'Build a Brand that Scales.',
     subheadline:
       "Artisk understands the world your brand is entering. Your competitors, your audience, your opening.\nWe don't just generate assets. We build a system that learns and evolves with your brand.",
     ctaLabel: 'Build my brand system',
+    detail:
+      'Artisk connects brand strategy, visual guidelines, asset generation, and feedback loops into a scalable AI-powered workflow.',
     images: {
       vertical: [
         '/Home/hero-case-.png',
@@ -321,7 +325,7 @@ function Header() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="/" className="flex-shrink-0">
-          <img src={content.brand.logoSrc} alt={content.brand.name} className="h-7 w-auto" />
+          <img src={withBase(content.brand.logoSrc)} alt={content.brand.name} className="h-7 w-auto" />
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -329,7 +333,7 @@ function Header() {
             <a
               key={link}
               href={`/${link.toLowerCase().replace(/\s+/g, '-')}`}
-              className="text-[13px] font-medium text-[rgba(0,0,0,0.55)] transition-colors duration-200 hover:text-[rgba(0,0,0,0.8)]"
+              className="text-[13px] font-normal text-[rgba(0,0,0,0.55)] transition-colors duration-200 hover:text-[rgba(0,0,0,0.8)]"
             >
               {link}
             </a>
@@ -339,13 +343,13 @@ function Header() {
         <div className="flex items-center gap-4">
           <a
             href="/log-in"
-            className="text-[13px] font-medium text-[rgba(0,0,0,0.55)] transition-colors duration-200 hover:text-[rgba(0,0,0,0.8)]"
+            className="text-[13px] font-normal text-[rgba(0,0,0,0.55)] transition-colors duration-200 hover:text-[rgba(0,0,0,0.8)]"
           >
             Log In
           </a>
           <a
             href="/sign-in"
-            className="text-[13px] font-semibold text-[#0A0F0C] transition-colors duration-200 hover:text-[rgba(0,0,0,0.7)]"
+            className="text-[13px] font-normal text-[#0A0F0C] transition-colors duration-200 hover:text-[rgba(0,0,0,0.7)]"
           >
             Sign In
           </a>
@@ -357,15 +361,18 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="relative mx-auto max-w-6xl px-6 pb-2 pt-12 md:pb-4 md:pt-16">
+    <section className="relative mx-auto max-w-6xl px-6 pb-2 pt-16 md:pb-4 md:pt-24">
       <div className="relative z-10 mx-auto text-center">
-        <h1 className="text-[40px] font-medium leading-[1.1] tracking-tight text-[#0A0F0C] md:text-[64px] whitespace-nowrap">
+        <div className="text-[11px] font-normal tracking-[0.2em] uppercase text-[rgba(0,0,0,0.35)] mb-6">
+          {content.hero.eyebrow}
+        </div>
+        <h1 className="text-[48px] font-light leading-[1.05] tracking-[-0.02em] text-[#0A0F0C] md:text-[72px] max-w-4xl mx-auto">
           {content.hero.headline}
         </h1>
-        <p className="mx-auto mt-4 whitespace-pre-wrap text-pretty text-[16px] leading-relaxed text-[rgba(0,0,0,0.6)] md:text-[18px]">
-          {content.hero.subheadline}
+        <p className="mx-auto mt-6 max-w-xl text-pretty text-[15px] leading-relaxed text-[rgba(0,0,0,0.5)] md:text-[16px]">
+          {content.hero.detail}
         </p>
-        <div className="mt-20 flex justify-center">
+        <div className="mt-12 flex justify-center">
           <motion.button
             whileHover={{ y: -2, boxShadow: '0 4px 16px rgba(0,0,0,0.15)' }}
             whileTap={{ y: 0 }}
@@ -484,7 +491,7 @@ function PinnedImageWall() {
                     style={{ x, y }}
                   >
                     <img
-                      src={src}
+                      src={withBase(src)}
                       alt=""
                       loading="lazy"
                       className="hero-image"
@@ -522,10 +529,10 @@ function CoreFeatures() {
     <section ref={ref} className="mx-auto max-w-6xl px-6 py-32 md:py-40">
       <div className="max-w-2xl">
         <motion.div style={style}>
-          <div className="text-[12px] font-semibold tracking-wider uppercase text-[rgba(0,0,0,0.45)]">
+          <div className="text-[12px] font-normal tracking-wider uppercase text-[rgba(0,0,0,0.45)]">
             Core Features
           </div>
-          <h2 className="mt-3 text-balance text-[30px] font-semibold leading-[1.2] tracking-tight text-[#0A0F0C] md:text-[36px]">
+          <h2 className="mt-3 text-balance text-[30px] font-light leading-[1.1] tracking-[-0.02em] text-[#0A0F0C] md:text-[36px]">
             {content.coreFeatures.headline}
           </h2>
           <p className="mt-4 text-pretty text-[15px] leading-relaxed text-[rgba(0,0,0,0.6)] md:text-[16px]">
@@ -541,10 +548,10 @@ function CoreFeatures() {
             <RevealBlock key={item.title} index={idx}>
               <div className={`flex flex-col gap-10 md:flex-row md:items-center md:gap-20 ${even ? '' : 'md:flex-row-reverse'}`}>
                 <div className="flex-1">
-                  <div className="text-[64px] font-semibold leading-none tracking-tighter text-[rgba(0,0,0,0.06)] mb-5">
+                  <div className="text-[64px] font-light leading-none tracking-tighter text-[rgba(0,0,0,0.08)] mb-5">
                     {String(idx + 1).padStart(2, '0')}
                   </div>
-                  <h3 className="text-[17px] font-semibold text-[rgba(0,0,0,0.85)] md:text-[18px]">
+                  <h3 className="text-[17px] font-normal text-[rgba(0,0,0,0.85)] md:text-[18px]">
                     {item.title}
                   </h3>
                   <p className="mt-4 text-[14px] leading-relaxed text-[rgba(0,0,0,0.55)] max-w-md">
@@ -553,7 +560,7 @@ function CoreFeatures() {
                 </div>
                 <div className="flex-1">
                   <img
-                    src={item.img}
+                    src={withBase(item.img)}
                     alt=""
                     loading="lazy"
                     className="aspect-[16/9] w-full rounded-2xl border border-[rgba(0,0,0,0.06)] object-cover"
@@ -575,12 +582,12 @@ function WhyArtisk() {
     <section ref={ref} className="mx-auto max-w-6xl px-6 py-32 md:py-40">
       <div className="max-w-3xl">
         <motion.div style={style}>
-          <div className="text-[12px] font-semibold tracking-wider uppercase text-[rgba(0,0,0,0.45)]">
+          <div className="text-[12px] font-normal tracking-wider uppercase text-[rgba(0,0,0,0.45)]">
             Why Artisk
           </div>
-          <p className="mt-3 text-pretty text-[18px] font-medium leading-relaxed text-[rgba(0,0,0,0.75)] md:text-[20px]">
+          <h2 className="mt-3 text-balance text-[30px] font-light leading-[1.1] tracking-[-0.02em] text-[#0A0F0C] md:text-[36px]">
             {content.whyArtisk.subheadline}
-          </p>
+          </h2>
         </motion.div>
       </div>
 
@@ -593,7 +600,7 @@ function WhyArtisk() {
                 <div
                   className={`glass-card rounded-2xl p-6 ${isArtisk ? '' : 'glass-card--light'}`}
                 >
-                  <h3 className="text-[16px] font-semibold text-[rgba(0,0,0,0.85)]">
+                  <h3 className="text-[16px] font-normal text-[rgba(0,0,0,0.85)]">
                     {col.title}
                   </h3>
                   <ul className="mt-4 space-y-3">
@@ -629,7 +636,7 @@ function Testimonials() {
   return (
     <section ref={ref} className="mx-auto max-w-6xl px-6 py-32 md:py-40">
       <motion.div style={style} className="mb-14">
-        <div className="text-[12px] font-semibold tracking-wider uppercase text-[rgba(0,0,0,0.45)]">
+        <div className="text-[12px] font-normal tracking-wider uppercase text-[rgba(0,0,0,0.45)]">
           Testimonials
         </div>
       </motion.div>
@@ -651,7 +658,7 @@ function Testimonials() {
                   transition={{ type: 'spring', stiffness: 120, damping: 15, mass: 0.8 }}
                   style={{ boxShadow: isOpen ? CARD_SHADOW_LIGHT_HOVER : CARD_SHADOW_BASE }}
                 >
-                  <motion.h3 layout className="text-[16px] font-semibold text-[rgba(0,0,0,0.85)]">
+                  <motion.h3 layout className="text-[16px] font-normal text-[rgba(0,0,0,0.85)]">
                     {t.title}
                   </motion.h3>
                   <motion.p layout className="mt-4 text-[13px] leading-relaxed text-[rgba(0,0,0,0.55)]">
@@ -683,12 +690,12 @@ function Testimonials() {
                   </AnimatePresence>
                   <motion.div layout className="mt-6 flex items-center gap-3">
                     <img
-                      src={t.avatar}
+                      src={withBase(t.avatar)}
                       alt={t.name}
                       className="h-10 w-10 rounded-full object-cover"
                     />
                     <div>
-                      <div className="text-[13px] font-semibold text-[rgba(0,0,0,0.7)]">
+                      <div className="text-[13px] font-normal text-[rgba(0,0,0,0.7)]">
                         {t.name}
                       </div>
                       <div className="text-[11px] text-[rgba(0,0,0,0.4)]">{t.role.split(',')[0]}</div>
@@ -718,10 +725,10 @@ function FAQ() {
     <section ref={ref} className="mx-auto max-w-6xl px-6 py-32 md:py-40">
       <div className="max-w-3xl">
         <motion.div style={style}>
-          <div className="text-[12px] font-semibold text-[rgba(0,0,0,0.45)]">
+          <div className="text-[12px] font-normal text-[rgba(0,0,0,0.45)]">
             {content.faq.eyebrow}
           </div>
-          <h2 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-tight text-[#0A0F0C] md:text-[36px]">
+          <h2 className="mt-3 text-[30px] font-light leading-[1.1] tracking-[-0.02em] text-[#0A0F0C] md:text-[36px]">
             {content.faq.title}
           </h2>
         </motion.div>
@@ -757,7 +764,7 @@ function Footer() {
         <div className="flex flex-col gap-16 md:flex-row md:justify-between">
           <div className="max-w-xs">
             <img
-              src={content.brand.logoSrc}
+              src={withBase(content.brand.logoSrc)}
               alt={content.brand.name}
               className="h-7 w-auto"
             />
@@ -769,7 +776,7 @@ function Footer() {
           <div className="flex gap-24">
             {groupedLinks.map((group) => (
               <div key={group.label}>
-                <h4 className="text-[13px] font-semibold text-[rgba(0,0,0,0.85)]">{group.label}</h4>
+                <h4 className="text-[13px] font-normal text-[rgba(0,0,0,0.85)]">{group.label}</h4>
                 <ul className="mt-3 space-y-2">
                   {group.links.map((l) => (
                     <li key={l}>
