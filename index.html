@@ -11,6 +11,13 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function(){
+        var search=window.location.search;
+        var p=new URLSearchParams(search).get('p');
+        if(p){window.history.replaceState(null,'','%BASE_URL%'.replace(/\/$/,'')+p);}
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
